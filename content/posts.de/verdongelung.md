@@ -1,10 +1,9 @@
 +++
-weight = 110
+weight = 20
 title = 'Keine Nachhaltigkeit wegen Verdongelung'
 date = 2024-04-01T19:03:39+02:00
-draft = true
+draft = false
 +++
-
 # Verdongelung kontra Nachhaltigkeit
 
 Der Leitartikel in c't 18/2021 machte auf ein Problem aufmerksam, das

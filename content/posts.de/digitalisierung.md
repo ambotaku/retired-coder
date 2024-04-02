@@ -1,5 +1,5 @@
 +++
-weight = 500
+weight = 30
 title = 'Was bedeutet "Digitalisierung" ?'
 date = 2024-04-01T18:49:18+02:00
 draft = false
@@ -35,7 +35,7 @@ Verbindungen müssen zuverlässig, sicher und über viele Verbindungsarten
 möglich sein, wegen der daraus entstehenden Komplexität werden Aufgaben
 in klar voneinander getrennten Schichten bzw. "Protokoll-Ebenen"
 aufgeteilt, die das
-[:de:OSI-Modell](https://en.wikipedia.org/wiki/:de:OSI-Modell) abstrakt
+[OSI-Modell](https://de.wikipedia.org/wiki/:de:OSI-Modell) abstrakt
 definiert:
 
 1.  Bitübertragungsschicht: realisiert ein Übertragungsmedium wie Kabel,

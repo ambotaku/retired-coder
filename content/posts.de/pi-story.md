@@ -1,5 +1,5 @@
 +++
-weight=100
+weight=10
 draft = false
 date = 2024-04-01T13:50:31+02:00
 title = "Eine kleine Geschichte zu Pi"
