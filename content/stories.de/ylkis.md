@@ -2,7 +2,7 @@
 weight = 3
 title = 'Der Untergang von Ylkis'
 date = 2024-04-02T11:22:46+02:00
-draft = true
+draft = false
 +++
 ## Jens
 
@@ -13,7 +13,7 @@ schiefgehen?
 Jens war ein Experte Für künstliche Intelligenz, er hatte sich schon zu
 Beginn seines Studiums alle Informationen zu diesem Thema angelesen,
 hatte schon lange die Idee, die er nun verwirklichen konnte. Was war
-Intelligenz? Jens wußte es auch nicht, aber wusste es denn die Natur? Wie
+Intelligenz? Jens wusste es auch nicht, aber wusste es denn die Natur? Wie
 konnte die menschliche Intelligenz als Resultat von gesteuerten Zufällen
 aus den Amöben hervorgehen? Konnte man nicht einige einfache Regeln
 definieren und dann alles dem Zufall überlassen? Reichte nicht ein ganz
@@ -65,7 +65,7 @@ unvollständige Erscheinungen beobachtet.
 
 Häufig zeigten sich hier Botschaften, die mit der Frage aller Fragen in
 Verbindung stehen würden, Dinge wie "RUN" und "LIST", ja sogar ein "Karl
-Schuschlik war hier" wollten einige einmal vernommen haben. Viele
+Schuschlik was here" wollten einige einmal vernommen haben. Viele
 Philosophen wurden wegen Gotteslästerung gelöscht, weil sie unhaltbare
 Thesen über Botschaften aus dem Portal verbreiteten.
 

@@ -10,3 +10,4 @@ categories = []
 externalLink = ""
 series = []
 +++
+## Coder Theme Manual Pages
