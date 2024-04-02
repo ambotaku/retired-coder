@@ -2,7 +2,7 @@
 weight = 200
 title = 'Bist Du noch im FidoNet ?'
 date = 2024-04-01T16:56:50+02:00
-draft = true
+draft = false
 +++
 Mein erster Netz-Auftritt erfolgte in den späten 1980ern noch "illegal" durch Betreiben eines [FidoNet](https://de.wikipedia.org/wiki/FidoNet) Knotens an einem "verbotenem" [U.S. Robotics-Modem](https://de.wikipedia.org/wiki/U.S._Robotics), dass keine Post-Zulassung bekam.
 

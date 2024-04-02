@@ -2,7 +2,7 @@
 weight = 100
 title = 'Wer ist Ambotaku ?'
 date = 2024-04-01T16:50:58+02:00
-draft = true
+draft = false
 +++
 ## Privates / Familie
 
@@ -27,6 +27,9 @@ Außerdem kocht sie gut, backt lecker Kuchen und ist meine
 ernst genommene Kritikerin und Lektorin hier.
 
 ## Katzen
+
+![Pia mit 2021 (17 Jahre alt)](/images/pia.jpg)
+*Pia mit 2021 (17 Jahre alt)*
 
 Schon in meiner Kindheit liebte ich Katzen. Mein Vater, ansonsten "ein
 ganzer Kerl" hatte wohl seit seiner Kindheit phobische Ängste vor diesen
