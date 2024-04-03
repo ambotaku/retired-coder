@@ -10,8 +10,8 @@ enableEmoji = true
 # disqusShortname = "yourdiscussshortname"
 
 [markup.highlight]
-noClasses = true
-style = "perldoc"
+#noClasses = true
+style = "github-dark"
 
 [params]
 author = "Klaus Zerbe"
@@ -32,7 +32,7 @@ rtl = false
 # "auto" (use preference set by browser)
 # "dark" (dark background, light foreground)
 # "light" (light background, dark foreground) (default)
-colorScheme = "auto"
+colorScheme = "dark"
 # Hide the toggle button, along with the associated vertical divider
 hideColorSchemeToggle = false
 # Series see also post count

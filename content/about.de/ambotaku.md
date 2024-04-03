@@ -11,7 +11,7 @@ Bekanntschaften. Mein privates Umfeld ist deshalb recht übersichtlich, aber seh
 
 ## Partnerschaft
 
-Meine liebe Frau Irene kenne ich nun seit fast 30 Jahren und sie bringt
+Meine liebe Frau Irene kenne ich nun seit 50 Jahren und sie bringt
 den notwendigen Rationalismus und Pragmatismus in mein Leben, der mir
 Eskapist oder Spinner leider manchmal fehlt. Das war mir früher
 vielleicht gar nicht so klar - ihr wohl schon und sie hat mich trotzdem

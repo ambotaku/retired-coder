@@ -154,7 +154,7 @@ while (x > 0) {
 console.log(pi / (10n**20n));
 {{< /highlight >}}
 
-## Eine Pi berechnende Pi Pico - Maschine zum Selber Bauen
+## DIY: Den Pi Pico Python Rechner zusammen stöpseln
 
 Es gibt wohl kaum einen Bereich technischen Fortschritts, der sich schneller entwickelt hat als die Mikroelektronik. Aktuelle Smartphones leisten mehr als die Supercomputer der 1980er. Konkret hängt bereits ein altes iPhone4 locker einen Cray2 Supercomputer von 1985 ab.
 
@@ -243,3 +243,5 @@ def get_pi():
        display.show()          # update display
        sleep(.1 + value/65535) # pause scrolling
 {{< /highlight >}}
+
+![pi-pico](/images/infinite_pi.jpg)
