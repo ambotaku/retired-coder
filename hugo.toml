@@ -1,8 +1,11 @@
 baseURL = "http://retiredcoder.klauszerbe.de"
+#baseURL = ""
+
 title = "retired coder"
 theme = "hugo-coder"
-languageCode = "en"
+languageCode = "de-DE"
 defaultContentLanguage = "de"
+#defaultContentLanguageInSubdir = true
 paginate = 6
 enableEmoji = true
 
@@ -156,31 +159,6 @@ weight = 6
 url = "https://retiredcoder.klauszerbe.de/index.xml"
 rel = "alternate"
 type = "application/rss+xml"
-
-[languages.en]
-languageName = "English"
-title = 'Start Page'
-disabled = true
-
-#[[languages.en.menu.main]]
-#name = "About"
-#weight = 1
-#url = "/about/"
-
-#[[languages.en.menu.main]]
-#name = "Blog"
-#weight = 2
-#url = "/posts/"
-
-#[[languages.en.menu.main]]
-#name = "Projects"
-#weight = 3
-#url = "projects/"
-
-#[[languages.en.menu.main]]
-#name = "Contact me"
-#weight = 5
-#url = "contact/"
 
 [languages.de]
 languageName = "Deutsch"
