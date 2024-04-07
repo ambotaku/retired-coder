@@ -9,21 +9,21 @@ draft = false
 Ein Webserver muss mindestens eine Sache können:
 
 1. per [Transmission Control Protocol (TCP)](https://de.wikipedia.org/wiki/Transmission_Control_Protocol)
- einen Port öffnen 80 für
-das [Hypertext Transfer Protokoll HTTP](https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol)
+ mit Port 80 für das
+ [Hypertext Transfer Protokoll HTTP](https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol)
+öffnen
 2. warten bis ein Paket ankommt, das eine Zeile enthält, die den Befehl GET gefolgt
 von einem [URL-Pfadnamen](https://de.wikipedia.org/wiki/Uniform_Resource_Locator)
  wie <http://server.de/index.html> enthält
-3. die so angeforderte Datei in einem Dateisystem suchen
+3. die so angeforderte Datei in einem Dateisystem suchen (oder eine vom Webserver
+bereit gestellte Funktion aufrufen)
 4. ein Header-Päckchen schicken, welches mindestens die HTTP-Version und einen Status
 enthält (z.B. **HTTP/1.1 200 OK** wenn Datei gefunden wurde oder **HTTP/1.1 404
- not found**
- wenn nicht).
-Wichtig für den Browser sind noch der Content-Type (MIME)und Content-Size (Byte-Anzahl),
- damit der Browser weiß, welche und wie viele Bytes vom Server kommen
-5. wenn Datei gefunden wurde, deren Inhalt in handlichen TCP Päckchen zum Absender
- des GET-Befehls
-schicken.
+ not found** wenn nicht). Wichtig sind noch Content-Type
+  (MIME) und Content-Size (Byte-Anzahl),
+ damit der Browser weiß, welche und wie viele Bytes vom Server abzuholen sind
+5. wenn die Datei gefunden wurde, deren Inhalt in handlichen TCP Päckchen zum Absender
+ des GET-Befehls schicken.
 6. die TCP Verbindung beenden
 
 "Richtige" Webserver wie NGINX oder Apache erkennen noch Befehle wie HEAD, POST,
@@ -38,7 +38,7 @@ Verzeichnis, welches eine HTML Datei namens index.html enthält den folgenden
 Konsolen-Befehl eingeben:
 {{< highlight bash >}}
 $ python3 -m http.server
-Serving HTTP on 0.0.0.0 port 8000 [](http://0.0.0.0:8000/) ...
+Serving HTTP on 0.0.0.0 port 8000 http://0.0.0.0:8000/ ...
 {{< /highlight >}}
 Wenn man nun in einem Browser die angezeigte URL ins Suchfeld eingibt (ja -
 die IP4-Addresse 0.0.0.0 funktioniert tatsächlich),
@@ -49,23 +49,23 @@ Gibt es für Python keine als HTML-Hauptseite erkennbare Datei, wird wie bei den
   sollte man so ein Feature aus Sicherheitsgründen abschalten).
 
 Nutzt man diesen Befehl in einem von Hugo erstelltem HTLML-Wurzelverzeichnis
- */public*, wird der gesamte Webauftritt sogar funktionieren, obwohl Pythons
+ ```/public```, wird der gesamte Webauftritt sogar funktionieren, obwohl Pythons
  primitiver Webserver von  HTML, CSS, Javascript usw. überhaupt nichts versteht.
   Das ist ja auch nicht Sache eines Webservers, sondern eines Browsers.
 
-Statt Python zu bemühen, wenn man schon Hugo hat ist auch überflüssig, denn
- auch Hugo hat einen eingebauten Webserver. Der lädt dazu noch alle Seiten neu,
-  die man bearbeitet hat. Diesen Server öffnet man aber im Projekt-
-  Wurzelverzeichnis, weil er auf Änderungen im */content* Verzeichnis,
+Python zu bemühen - wenn man schon Hugo hat - ist auch überflüssig, denn
+ auch Hugo hat einen eingebauten Webserver. Der lädt außerdem noch alle Seiten neu,
+  die man verändert hat. Diesen Server öffnet man aber im Projekt-
+  Wurzelverzeichnis, weil er auf Änderungen im ```/content``` Verzeichnis,
   also den Markdown-Texten achtet. Findet er dort Fehler, werden sie auch
-   direkt im Webbrowser angezeigt - was sehr, sehr nützlich ist.
+   direkt im Webbrowser angezeigt - was sehr nützlich ist:
 
 {{< highlight bash >}}
 $ hugo server -D
-Watching for changes in /home/kzerbe/projects/hugo/scratch/retired-coder/{archetypes,content,i18n,static,themes}
-Watching for config changes in /home/kzerbe/projects/hugo/scratch/retired-coder/hugo.toml, /home/kzerbe/projects/hugo/scratch/retired-coder/themes/hugo-coder/config.toml
+hugo-coder/config.toml
 Start building sites …
-hugo v0.124.1-db083b05f16c945fec04f745f0ca8640560cf1ec+extended linux/amd64 BuildDate=2024-03-20T11:40:10Z VendorInfo=gohugoio
+hugo v0.124.1-db083b05f16c945fec04f745f0ca8640560cf1ec+extended
+  linux/amd64 BuildDate=2024-03-20T11:40:10Z VendorInfo=gohugoio
 
                    | DE
 -------------------+-----
@@ -88,15 +88,15 @@ Press Ctrl+C to stope
 Die in der Befehlszeile angegebene Option D rendert auch "Draft"-
 Texte, die noch nicht zur Veröffentlichung freigegeben sind.
 Das ist während der Arbeit an neuen Texten sehr nützlich. Derart spezialisierte
- Test-Webserver findet man wohl in jedem modernen Web-Entwicklungs-System.
+ Test-Webserver findet man aber wohl in jedem modernen Web-Entwicklungs-System.
 
 ## Webserver auf Kleinstrechnern
 
-Ich habe es noch nicht ausprobiert, aber eigentlich sollten sogar *Bastelrechner*
- wie [Raspberry Pi Zero 2 W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/)
-  sich als einfache Hugo Entwicklungsumgebung eignen - mit 2 Watt Stromverbrauch
-   zum Preis von 15$ für diesen Computer - denn sogar darauf läuft schon ein
-    aktuelles Debian-Linux (ist das nicht nachhaltig?). Das reicht
+Ich habe es noch nicht ausprobiert, aber eigentlich sollten sich sogar *Bastelrechner*
+ wie der [Raspberry Pi Zero 2 W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/)
+als einfache Hugo Entwicklungsumgebung eignen - trotz nur 2 Watt Stromverbrauch
+   und einem Preis von nur 15$ für solch einen Computer. Darauf läuft nämlich
+schon ein aktuelles Debian-Linux. Das nennt man "nachhaltig" und reicht
 sogar schon für einen Apache-Webserver mit Modulen wie der Programmiersprache
  PHP - also einen sogenannten LAMP-Server (Linux + Apache-Webserver + MySQL-
  Datenbank + PHP).
@@ -107,24 +107,24 @@ Bei nur 512 MB Arbeitsspeicher sollte man auf eine graphische Bedienoberfläche
    Anzeigen von Webseiten macht jedenfalls der Browser und der läuft im
    Normalfall ja auf einem anderen Rechner als der Server. Da es aber MicroSD
    Speicherkarten inzwischen bis 1 TB Größe gibt, kann sogar ein
-   **Raspberry Pi Zero** wohl bald eine gesamte Wikipedia an (statischen)
-   Webseiten speichern.
+   **Raspberry Pi Zero** wohl bald nahezu eine Wikipedia an statischen
+   Webseiten speichern (allerdings ohne Bilder).
 
 ![Pi Zero W](/images/pi_zero_w.jpg)
 
 Dieser kleine Rechner hat sogar einen HDMI Anschluss, was aber
-bei nur 512 MB Arbeitsspeicher auch mit Linux knapp ist. Spätestens einen der
-*großen* Browser wie Firefox oder Chrome sollte man auf so einem Ding weg lassen.
+bei nur 512 MB Arbeitsspeicher auch mit Linux knapp ist. Spätestens einen so
+großen Browser wie Firefox oder Chrome sollte man auf so einem Ding weg lassen.
 
-## Aber es geht noch kleiner
+## Es geht aber noch kleiner
 
 Wie wär es denn mit Webservern auf einem Chip ?
 
 Wie oben beschrieben, braucht ein Webserver mindestens ein funktionierendes
  Dateisystem und einen kompletten TCP/IP Protokollstack. Damit sind zumindest
   8-Bit Lösungen wie ein [Arduino UNO](https://store.arduino.cc/collections/boards-modules)
-   raus - wären da nicht diese ESP32-Chips des chinesischen
-Hersteller [Espressif](https://www.espressif.com/).
+   raus - wären da nicht  beispielsweise die ESP32-Chips des chinesischen
+Herstellers [Espressif](https://www.espressif.com/).
 
 {{< notice info >}}
 Gemini behauptet:
@@ -134,8 +134,8 @@ Gemini behauptet:
 - Erweiterter Stack: Erweiterte Stacks mit Funktionen wie Firewall, NAT, VPN und
  komplexeren Protokollen benötigen bis zu 96 KB RAM.
 
-Da ist aber noch nicht der Speicher berücksichtigt, der für Puffer
-etc. benötigt wird.
+Anmerkung: Dabei ist aber noch nicht der Speicher berücksichtigt, der für Puffer
+ benötigt wird.
 {{< /notice >}}
 
 Die Espressif Chips ESP8266 und ESP32 sind 32 Bit Microcontroller, die sich dem
@@ -143,20 +143,20 @@ Die Espressif Chips ESP8266 und ESP32 sind 32 Bit Microcontroller, die sich dem
   der populären, älteren Arduinos gegenüber als Modem mit serieller Schnittstelle
    ausgeben - mit den selben alten AT-Sequenzen wie Hayes Modems aus den späten
     1980ern. Diese Chips implementieren auf Ihrer Seite aber diverse WLAN und
-     Bluetooth Standards und machen so auch veraltete 8-Bit- Technik "smart"-
-      wie dämlich auch immer die Grundfunktion eines Geräts bleibt. Damit kann
-       man dann Küchengeräte, Heizungen, Waagen, Lampen oder Steckdosenleisten
-        via WLAN oder Bluetooth über einen Web-Browser steuern - über
-         Webseiten, die ein Webserver aus solch einem Chip ausliefert.
+Bluetooth Standards und machen so auch veraltete 8-Bit- Technik "smart"-
+  wie dämlich auch immer die Grundfunktion eines Geräts ist. Damit kann
+  man dann Küchengeräte, Heizungen, Waagen, Lampen oder Steckdosenleisten
+  via WLAN oder Bluetooth über einen Web-Browser steuern - über
+  Webseiten, die ein Webserver aus solch einem Chip ausliefert.
 Als Goodie (für den Hersteller solcher Geräte) liefert man dann seine persönlichen
  Daten nach China, wo der Server des
 Herstellers steht - diese Chinesen sind wohl das wahrlich *smarte* an der Chose.
 
 ![ESP32 D1 mini](/images/D1_mini_ESP32_pinout.jpg)
 
-Ich gehe hier nicht näher auf den Anschlussplan des ESP32 Boards
-oben ein, das sollte aber klar machen, das so ein Ding mehr machen
-kann als nebenbei noch einen simplen Webserver.
+Ich gehe hier nicht näher auf den Anschlussplan des ESP32 Chipmoduls
+oben ein, es soll nur klar machen, das so ein Teil mehr machen
+kann als nebenbei noch einen simplen Webserver bereitstellen.
 
 Inzwischen setzt auch Arduino selbst 32-bittige ESP32 auf
  [eigenen Boards](https://docs.arduino.cc/hardware/nano-esp32/) ein.
@@ -169,51 +169,52 @@ Dazu gehört der [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation
 
   ![Pico-W Pinout](/images/picow-pinout.svg)
 
-Da ESP32 und Raspberry Pi Pico W Chips allein auch schon recht gut
+Da ESP32 und Raspberry Pi Pico W Chips von Haus aus auch schon recht gut
  [MicroPython](https://micropython.org/) können,
-reicht ganz allein solch ein Chip für einen Webserver schon aus, wenn der
+reicht solch ein Chip ganz allein für einen Webserver schon aus, wenn der
  vorhandene Massenspeicher (Flashdrive) ausreicht. Die Daten sollten sich aber
-  nicht zu häufig ändern, denn diese Chips halten nur einige tausend
-   Schreibzyklen aus. Ansonsten nutzt man eine ihrer beim ESP32 doppelt
+  nicht zu häufig ändern (was bei statischen Seiten ja auch nicht der Fall ist),
+   denn diese Chips verkraften nur einige tausend
+   Schreibzyklen. Ansonsten nutzt man eine ihrer beim ESP32 doppelt
 vorhandenen [SPI-Schnittstellen](https://de.wikipedia.org/wiki/Serial_Peripheral_Interface)
- (im Bild oben orange markiert), um direkt eine SD-Karte anzusteuern.
+ , um direkt eine SD-Karte anzusteuern.
 
 Manch ein Webserver soll auch keine langen Texte ausgeben, sondern nur kleine Dialoge,
 mit denen man Hardware-Einstellungen vornimmt. Ihr kennt das vielleicht von Eurem
 Internet-Router oder anderer vernetzter Hardware.
 
-Mit Micropython lassen sich solch einfachen Webserver mit wenig Code erreichen, wie
-dies kleine [Github-Projekt](https://github.com/troublegum/micropyserver) mit
+Mit Micropython lassen sich solch einfache Webserver mit sehr wenig Code erstellen,
+ wie dies kleine [Github-Projekt](https://github.com/troublegum/micropyserver) mit
 einem ESP8266 zeigt.
 
 Ich verwende auch einen WLAN Router, der nur aus einem ESP32 Chip besteht, der
-über [dies Projekt](https://github.com/martin-ger/esp32_nat_router) konfiguriert
+über [dies Projekt](https://github.com/martin-ger/esp32_nat_router) programmiert
  wird:
 
 ![nat-router](/images/nat_router.jpg)
 
-Über den Webserver dieses Routers wird der folgenden Dialog gesendet, dem man
-den WLAN-Zugang zu diesem Router (Access Point Settings) und den WLAN-Zugang
-des Routers einträgt, welcher die Verbindung zum Internet herstellt, wobei noch eine
+Über den Webserver dieses Routers wird der folgende Dialog bereitgestellt, mit
+dem man den WLAN-Zugang zu diesem Router (Access Point Settings) und den WLAN-Zugang
+des Internet Routers einträgt, wobei noch eine
 feste IP-Adresse möglich ist, falls für diese Verbindung kein DHCP verwendet
 werden soll. Über einen Reboot-Button lässt sich der Router neu starten.
-Diese Anwendung wurde allerdings in C geschrieben.
+Diese Anwendung wurde allerdings in C mit Libraries von Espressif geschrieben.
 
 ![ESP32_NAT.png](/images/ESP32_NAT.png)
 
 ## Wie kann man Dateneingaben zurück an den Webserver schicken ?
 
 Seitengeneratoren wie Hugo sind für statische Webseiten ausgelegt
-und die werden vom Server nur ausgeliefert und der Server braucht
+und die werden vom Server einfach ausgeliefert und der Server braucht
 keine Methode, um in Formulare von Seiten eingegebene Daten anzunehmen.
 
 Mit dem Html ```<form>``` Tag umgebene Textteile des Markdown werden bei
 der Seitengenerierung deshalb sogar ausgelassen. Ohne händisch erstellten
- HTML-Code geht da nichts und der Server braucht auch Code, um in einem
+ HTML-Code geht gar nichts und der Server braucht auch Code, um in einem
  zusätzlichem Request per GET oder POST Formulardaten anzunehmen.
 
 Hugo's Markdown kann aber mittels Shortcodes erweitert werden, die
-wiederum HTML enthalten können:
+beliebiges HTML enthalten können:
 
 {{< highlight html >}}
 <form accept-charset="UTF-8" action="???" method="GET">
@@ -227,7 +228,10 @@ wiederum HTML enthalten können:
 Wird solch ein Formular im Hugo Projektverzeichnis ```/layout/shortcodes/contact.html```
 abgelegt, kann es mit dem Shortcode ```contact``` im Markdown eingebaut werden.
 
-Aber wo geht dann die ```action``` hin? Statt der drei Fragezeichen sollte
-dort als *Endpoint* eine Serveradresse stehen, welche diese Daten verarbeiten kann.
-Als *method* könnte auch ```POST``` verwendet werden, wenn da ein Server ist,
-der Posts annehmen kann.
+Aber wohin geht die ```action```? Statt der drei Fragezeichen sollte
+dort als Endpoint eine Serveradresse stehen, welche diese Daten verarbeiten kann.
+Als *method* könnte dabei auch ```POST``` verwendet werden, wenn da ein Server ist,
+der Posts annehmen kann. Das wurde für Firmen wie [FormBackend](https://www.formbackend.com/)
+ zum Geschäftsmodell, natürlich könnte man auch einen eigenen Server nutzen, hat
+dann aber wieder alle Administrations-, Datenschutz- und Sicherheitsprobleme,
+die man mit einer  statischen Webseite eigentlich vermeiden wollte.
