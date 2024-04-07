@@ -217,7 +217,7 @@ Hugo's Markdown kann aber mittels Shortcodes erweitert werden, die
 beliebiges HTML enthalten können:
 
 {{< highlight html >}}
-<form accept-charset="UTF-8" action="???" method="GET">
+<form accept-charset="UTF-8" action="???" method="POST">
     <input type="email" name="email" placeholder="Ihre Email">
     <input type="text" name="name" placeholder="Ihr Name">
     <input type="text" name="message" placeholder="Wie kann ich Ihnen helfen">
@@ -235,3 +235,97 @@ der Posts annehmen kann. Das wurde für Firmen wie [FormBackend](https://www.for
  zum Geschäftsmodell, natürlich könnte man auch einen eigenen Server nutzen, hat
 dann aber wieder alle Administrations-, Datenschutz- und Sicherheitsprobleme,
 die man mit einer  statischen Webseite eigentlich vermeiden wollte.
+
+## Ein kleines NodeJS Anwendungsserver-Beispiel
+
+Mit dem [NodeJS Framework](https://nodejs.org/en) kann man recht
+leicht kleine Anwendungsserver bauen, also
+Server, die neben der Ausbreitung statischer Seiten auch Benutzereingaben verarbeiten
+können. Das folgende Beispiel kann per POST geschickte Formulardaten lesen und
+als Mail z.B. an den Seitenbetreiber schicken. Als ```action``` ist in in das Kontaktformular
+Beispiel oben  statt der Fragezeichen ```/contact``` einzutragen.
+
+{{< highlight javascript >}}
+const express = require('express');         // Anwendungsserver Framework
+const bodyParser = require('body-parser')   // http body-parser middleware
+const nodemailer = require('nodemailer');   // SMTP Mail-Framework
+
+// instanziiere Anwendungsservice auf Port 3000
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// hoste alle statischen Webseiten-Dateien aus Verzeichnis /public
+app.use(express.static('public'));
+
+// übernimm die beim POST im Formular eingegebenen Daten in ein JSON-Objekt
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+// konfiguriere den EMail Transport
+const transporter = nodemailer.createTransport({
+    host: "mail.host.de",
+    port: 587,
+    secure: false,
+    auth: {
+        user: "absender@provider.de",
+        pass: "geheim",
+    },
+});
+
+// hoste die HTML startseite
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
+
+// behandle den POST-request des Formulars
+app.post('/contact', (req, res) => {
+    // übernimm die Formulardaten
+    const { name, email, message } = req.body;
+
+    //baue eine Kontaktmail zusammen
+    const mailOptions = {
+        from: name + ' <' + email + '>',
+        to: 'seitenbetreiber@provider.de',
+        subject: 'Kontaktanfrage auf https://retiredcoder.klauszerbe.de',
+        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+        };
+
+    // sende die Kontaktmail
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error(error);
+            res.status(500).send('Kein Mailversand möglich');
+        } else {
+            console.log('Email gesendet: ' + info.response);
+            res.send('Vielen Dank für Ihre Anfrage');
+        }
+    });
+});
+
+// starte den Anwendungsserver
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+{{< /highlight >}}
+
+Für einen praktischen Einsatz im Internet ist dies Beispiel aber nicht
+stabil und sicher genug - dies Beispiel dient nur der prinzipiellen
+Demonstration. Insbesondere sollten keine Anmeldedaten realer Konten
+im Quellcode erscheinen. Unterm Strich ist es aber doch einfach und
+effektiv mit NodeJS solche Server zu bauen. Sobald NodeJS installiert
+wurde kann man es mit ein paar Befehlzeilen bauen:
+
+{{< highlight bash >}}
+$ mkdir myserver
+$ cd myserver
+$ mkdir public
+$ npm init --yes
+$ npm install express
+$ npm install body-parser
+$ npm nodemailer
+{{< /highlight >}}
+
+In diesem Verzeichnis ist dann ```index.js``` mit dem Code für den Anwendungs
+-Server und index.html in dem ```/public``` Unterverzeichnis abzulegen.
+Danach kann der Server mit dem Befehl ```node index.js``` gestartet werden.
+Im Browser sollte dann mit ```localhost:3000``` die Webseite mit dem Formular
+erscheinen. Beim Drücken des ```Send``` werden die Formulardaten gemailt,
+wenn die Mailanmeldung funktioniert.
