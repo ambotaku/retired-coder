@@ -194,3 +194,6 @@ url = "stories.de/"
 name = "Kontakt"
 weight = 5
 url = "contact.de/"
+
+[security]
+  enableInlineShortcodes = true
