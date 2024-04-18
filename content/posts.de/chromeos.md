@@ -7,16 +7,19 @@ draft = false
 Im ersten Teil dieser kleinen Artikelreihe ([Verdongelung]({{< ref "verdongelung.md" >}}))
 habe ich beschrieben, welche Motive mich zur weitest gehenden Loslösung
 von Microsoft Windows- und Apple-Computern gebracht haben. ChromeOS und
-ChromiumOS nutzen vorhandene Leistung von Computern am effektivsten aus
+das auf den meisten PCs installierbare ChromeOS Flex nutzen vorhandene
+Leistung von Computern am effektivsten aus
 und machen auch ältere oder sehr preiswerte Computer sicher und
 brauchbar für Alltagsaufgaben. Hier zeige ich auch, wie ein Premium
-Notebook durchaus auch als Arbeitsgerät etwa für professionelle
+Chromebook durchaus auch als Arbeitsgerät etwa für professionelle
 Software-Entwicklung einsetzbar ist.
 
-*Diese Artikelserie entstand auf einem Acer Spin 713 teilweise auf einem
+{{< notice info>}}
+Diese Artikelserie entstand auf einem Acer Spin 713 teilweise auf einem
 Clone meines DokuWiki-Servers und einem Apache2+PHP-LAMP-Server, der
 auch auf dem Chromebook lief, wenn ich unterwegs mal keine Online
 Verbindung hatte.
+{{< /notice >}}
 
 Wer heute einen Computer oder Mobilgerät kauft, erwartet darauf ein
 vorinstalliertes Betriebssystem. Bei fast allen Desktop-Computern und
@@ -74,7 +77,7 @@ ChromeOS ist primär ein Frontend-Betriebssystem für Cloud-Anwendungen.
 Auch wenn man inzwischen vieles auch Offline erledigen kann, benötigt
 man - je nach Anwendung - erheblich viel Download-Volumen. Das gilt
 inzwischen zwar auch - schon wegen immer größerer Updates - für Windows
-und macOS, aber ChromeOS ist sicher das Cloud-zentrischste
+und macOS, aber ChromeOS ist sicher das am ehesten Cloud-zentrische
 Betriebssystem.
 
 ### Kosten für Cloud-Dienste
@@ -97,7 +100,7 @@ werbefreie Angebote gegen höhere Gebühren.
 Wie inzwischen auch bei Apple und Microsoft benötigt man zur vollen
 Nutzung der ChromeOS Anwendungen ein Google-Mail Konto verbunden mit der
 Preisgabe persönlicher Daten - gegebenenfalls auch (freiwillig für
-Google-Pay) mit Kontodaten. Bei ChromiumOS gibt es alternative
+Google-Pay) mit Kontodaten. Für Chrome OS Flex gibt es alternative
 Möglichkeiten und für ein "bisschen" Surfen geht vieles auch ohne
 Account.
 
@@ -193,7 +196,7 @@ Feststelltaste und alle Funktionstasten. Über nicht auf der Tastatur
 aufgedruckte Kombinationen - etwa Alt-Backspace für Entf - erreicht man
 zwar (fast) alle, aber es gibt sehr viele solcher Kombinationen, die man
 erst mal in der Online-Doku suchen muss - aber das ist nur eine der
-vielen Ähnlichkeiten zu Apple. Installiert man ChromiumOS auf einem
+vielen Ähnlichkeiten zu Apple. Installiert man ChromeOS Flex auf einem
 alten Notebook, ist die Beschriftung von dessen PC-Tastatur vollends
 irreführend.
 
@@ -215,7 +218,7 @@ vorhandenen Anwendungen ist.
 Gratulation an alle, die bis hier gelesen haben !
 
 Für wen keine der oben genannten Einschränkungen ein No-Go ist, der kann
-jetzt die Pluspunkte von Chromebooks und ChromiumOS erfahren.
+jetzt die Pluspunkte von Chromebooks und ChromeOS (-Flex) erfahren.
 Chromebooks sind einfach einfach. Hat man gar schon einen Google-Mail
 Account, nutzt Chrome oder Chromium, speichert schon
 Rechner-übergreifend Browser-Einstellungen, Lesezeichen, und Passworte
@@ -286,21 +289,21 @@ Anmelden neu gestartet werden. Der stabile Zustand von ChromeOS - Host
 wird auch durch einen schweren Fehler in einem Subsystem nicht
 korrumpiert.
 
-## ChromiumOS vs. ChromeOS
+## ChromeOS Flex vs. ChromeOS
 
 Der chinesische ChromeOS-Fork FydeOS sieht
 leider noch ziemlich nach Baustelle aus. Priorität hat da wohl erst mal
-die Übersetzung ins chinesiche für den chinesischen Markt. Die
+die Übersetzung ins chinesische für den chinesischen Markt. Die
 verzweifelte US-Sanktionierungspolitik beschert und aber wohl bald mehr
 OpenSource-basierte Computer.
 
 Bisher war hauptsächlich vom proprietären Google ChromeOS die Rede,
 welches nur auf Chromebook- oder Chromebox- genannten Rechnern läuft und
-auch Android Apps aus Googles Playstore ausführen kann. ChromiumOS
+auch Android Apps aus Googles Playstore ausführen kann. ChromeOS Flex
 erreicht nur Google's Webstore oder "freie" Stores, die Web-Anwendungen
 ausbreiten und natürlich alle im Web zugänglichen Webseiten und
 Dienste - so wie jeder aktuelle Browser. Darüber hinaus ist aber auch
-bei ChromiumOs eine virtuelle Maschine mit einer Debian GNU Linux
+bei ChromeOS Flex eine virtuelle Maschine mit einer Debian GNU Linux
 Distribution vorhanden (wenn der Rechner mindestens 4GB Arbeitsspeicher
 hat), womit man per APT-Tool auch die riesige Welt der Debian-Linux
 Distribution nutzen kann.
@@ -316,7 +319,7 @@ auch den Wechsel zwischen verschiedenen Images oder eine Neuinstallation
 eines Images, dessen VM instabil oder korrumpiert wurde.
 
 Etwas lästig mag erscheinen, dass man sowohl bei ChromeOS als auch
-ChromiumOS bei Änderungen der Installation alle lokalen Daten verliert,
+ChromeOS Flex bei Änderungen der Installation alle lokalen Daten verliert,
 die man nicht extern gesichert hat. Das gilt besonders für Linux-Images.
 Schaltet man die Linux-Option ab oder lädt ein anderes Linux-Image, sind
 alle Daten und Einstellungen, die im Vorgänger-Image angelegt wurden

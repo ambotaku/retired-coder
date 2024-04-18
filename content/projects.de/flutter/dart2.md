@@ -112,7 +112,72 @@ Seit Dart 2.0 müssen Programme vollständig [null safe](https://dart.dev/null-s
 nicht übersetzen.
 {{< /notice >}}
 
-### Konstanten und Speicherort
+### Der dynamic Typ
+
+Eine Anleihe von *C#* ist der Datentyp **dynamic**. Solche Variablen haben keinen
+festgelegten Typ.
+Das ist vor allem nützlich bei Kollektionen, die aus einer nicht statisch typisierten
+Umgebung wie JavaScript, CSV-Datei oder Befehlszeilenparametern kommen.
+So können im Rahmen eines Parsers zum Datenimport und Übernahme in ein streng
+typisiertes Dart-Datenmodell erst mal in eine dynamische Liste eingelesen werden.
+
+Als Beispiel ein Dart-Programm, das eine CSV-Datei importiert (dafür gibt es allerdings
+schon ein fertiges package **csv** im [Dart-Repository](https://pub.dev/),
+dieser simplifizierte Code dient nur der Demonstration).
+
+{{< highlight dart>}}
+import 'dart:io'; // zur Datei Ein/Ausgabe
+
+// Ein/Ausgabe - Funktionen sind asynchron
+void main() async {
+  // CSV-Datei wird aus dem aktuellen Verzeichnis geladen
+  final file = File('data.csv');
+  // warten bis Datei geladen wurde
+  final lines = await file.readAsLines();
+
+  // Dynamische Liste zum Speichern der Daten
+  final data = <List<dynamic>>[];
+
+  // Jede Zeile in der CSV-Datei verarbeiten
+  for (final line in lines) {
+    // Zeile in Spalten zerlegen
+    final columns = line.split(',');
+
+    // Spalten in dynamische Liste konvertieren
+    final row = <dynamic>[];
+    for (final column in columns) {
+      row.add(_parseColumn(column));
+    }
+
+    // Zeile zur Datenliste hinzufügen
+    data.add(row);
+  }
+
+  // Daten ausgeben
+  for (final row in data) {
+    print(row);
+  }
+}
+
+// Spalte in Liste einlesen
+dynamic _parseColumn(String column) {
+  // Versuchen, die Spalte als Zahl zu parsen
+  final number = num.tryParse(column);
+  // wenn parsen scheitert, ist's keine Zahl
+  if (number != null) {
+    return number; // Zahl eintragen
+  }
+  // String eintragen
+  return column;
+}
+{{< /highlight >}}
+
+Auf TypeScript- oder C#- Programmierer dürfte der Code vertraut wirken,
+der gesamte Leistungsumfang wie auch der **async-await** Mechanismus zur
+Thread-Synchronisierung funktioniert bei Dart genauso bequem. Nur die
+vielen **final** Deklarationen geben Rätsel auf.
+
+#### Konstanten und Speicherorte
 
 Ungewöhnlich bei Dart ist die Unterscheidung von **final**- und **const**- Konstanten.
 
@@ -185,3 +250,7 @@ reaktiven App mit geringerer Leistungsaufnahme.
 C/C++ Entwickler können sich const-Daten als DATA Speichersegment
 vorstellen, BSS sollte gemieden werden und finals und variable Daten liegen
 auf dem HEAP.
+
+{{< notice info >}}
+Fortsetzung folgt
+{{< /notice >}}
