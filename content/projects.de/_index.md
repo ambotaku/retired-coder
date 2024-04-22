@@ -11,3 +11,4 @@ bereits grundsätzlich in englischer Sprache vorliegen.
 
 - [Webseiten generieren mit Hugo \& Coder]({{< ref "coder">}})
 - [App Entwicklung mit Dart \& Flutter]({{< ref "flutter">}})
+- [Microservices & Tools mit Go]({{< ref "go" >}})
